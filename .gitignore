@@ -1,3 +1,4 @@
 data/
 save/
-__pycache__
+__pycache__/
+tasks/__pycache__/
