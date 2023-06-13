@@ -21,6 +21,15 @@ class visualise():
         self.level_u = np.linspace(0, 1.3, n_level)
         self.level_v = np.linspace(-0.6, 0.6, n_level)
 
+    def plot_loss(self, x, y, label, title=None):
+        plt.plot(x, y, label=label)
+        plt.semilogy()
+        plt.grid(True)
+        plt.legend(loc="upper left")
+        plt.xlabel('epochs')
+        plt.ylabel('loss')
+        plt.title(title)
+
     def process_data(self, nx, ny, pinn, area=area):
         x = torch.linspace(area[0], area[1], nx).reshape((-1, 1)).to(device)
         y = torch.linspace(area[2], area[3], ny).reshape((-1, 1)).to(device)

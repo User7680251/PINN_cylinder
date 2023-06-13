@@ -19,7 +19,7 @@ rho, miu = 1.0, 0.02
 Umax, H = 1.0, area[3] - area[2]
 
 # 定义训练相关参数
-num = 7
+num = 1
 lr = 0.0005
 n_inside = 200
 n_wall = 1000
@@ -226,8 +226,7 @@ def train():
             writer.add_scalar(path + '/loss', loss, epoch)
 
             plt.clf()
-            vis.plot_loss(np.arange(len(loss_log)), np.array(loss_log), "pde_loss")
-
+            vis.plot_loss(np.arange(len(loss_log)), np.array(loss_log), "loss")
             plt.savefig(os.path.join(path, 'loss.jpg'))
 
         if epoch % 1000 == 0:
@@ -251,5 +250,5 @@ def test():
                              ground_true[triang.triangles, 1].mean(axis=1) - 0.2) < r)
 
     vis = visualise()
-    #vis.plot_gt_uvp(ground_true, triang, True, path, 0)
+    vis.plot_gt_uvp(ground_true, triang, True, path, 0)
     vis.plot_p_vector(pinn, True, path, 0)
